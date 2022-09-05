@@ -8,23 +8,11 @@ Zeiad Ayman Mohammed | 1 | 31
 Omar Ayman Mohammed | 2| 2
 Yara Hossam El-Din | 2 | 48
 
-## Table of contents
- * [Importing libraries and loading data] (#import_data)
- * [Understanding Variable in Dataset] (#understand)
-* [Data Wrangling (checking for outliers and duplicates)] (#wrangling)
-* [Exploring and visualizing our dataset] (#visualize)
-* [Dropping irrelevant features ] (#drop)
-* [More preprocessing (Label encoding & Dummy encoding )] (#process)
-* [Splitting the dataset into training and testing sets] (#split)
-* [Fitting different models to the training set] (#fit)
-* [Testing different models and printing the results] (#test)
-
-<a name="import_data"></a>
 ## Importing libraries and loading data
 After importing the necessary libraries and models along with the metrics that we need to measure our performance, taking a look at our dataset reveals that some columns are completely irrelevant to our target. Said features can be dropped as a starter, such as “who completed the test” and “case number”.
 Also, to understand our data better, we need to know what the first 10 columns correspond to, which are the answers to 10 questions asked to the caregiver of the child to fill in the screening test.
 
-<a name="understand"></a>
+
 ## Understanding Variable in Dataset
 Corresponding Q-chat-10-Toddler Features
 A1
@@ -52,7 +40,6 @@ A10
 Does your child stare at nothing with no apparent purpose? 
 
 
-<a name="wrangling"></a>
 ## Data Wrangling (checking for outliers and duplicates)
 
 To make sure the remaining columns don’t have outliers such as misspelling, we apply .unique() method on different categorical columns such as ”sex”, ”jaundice”, “Family_mem_with_ASD” ..etc. Fortunately, there’s no outliers in our dataset.
@@ -65,18 +52,10 @@ Now, we start exploring our features and measuring their relevance to our label.
 First, we plot bar charts of categorical features we have such as: sex, jaundice, wheteher one of the parents have ASD. 
 We find out that:
 
-
-
-
-
-
-
 For gender, our data has around 735 males and 319 females.
-
 
  While for jaundice, there are 288 of the records who were diagnosed and 766 healthy people. 
 Also around 170 of the tested cases have a family member with ASD symptoms while approximately 884 don’t.
-
 
 For Ethnicity, the most prominent one is white european,followed by asians and middle easterns, with lowest count to native indians. 
 

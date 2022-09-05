@@ -1,41 +1,31 @@
 # Autism-Detection-ML-Project
 
-Group members 
+## Group members:
+Name | Sec | BN |   
+--- | --- | --- | 
+Habiba Mohamed Hanafy | 1 | 25
+Zeiad Ayman Mohammed | 1 | 31 
+Omar Ayman Mohammed | 2| 2
+Yara Hossam El-Din | 2 | 48
 
-Name
-Sec
-BN
-Habiba Mohamed Hanafy
-1
-25
-Zeiad Ayman Mohammed
-1
-31
-Omar Ayman Mohammed
-2
-2
-Yara Hossam El-Din Mostafa
-2
-48
+## Table of contents
+ * [Importing libraries and loading data] (#import_data)
+ * [Understanding Variable in Dataset] (#understand)
+* [Data Wrangling (checking for outliers and duplicates)] (#wrangling)
+* [Exploring and visualizing our dataset] (#visualize)
+* [Dropping irrelevant features ] (#drop)
+* [More preprocessing (Label encoding & Dummy encoding )] (#process)
+* [Splitting the dataset into training and testing sets] (#split)
+* [Fitting different models to the training set] (#fit)
+* [Testing different models and printing the results] (#test)
 
-
-
-Content (Final Designing Blocks For Our Model)
-Importing libraries and loading data
-Data Wrangling (outliers and duplicates)
-Exploring and visualizing our dataset
-Dropping irrelevant features 
-More preprocessing (Label encoding & Dummy encoding )
-Splitting the dataset into training and testing sets
-Fitting different models to the training set
-Testing different models and printing the results 
-
-Importing libraries and loading data
+<a name="import_data"></a>
+## Importing libraries and loading data
 After importing the necessary libraries and models along with the metrics that we need to measure our performance, taking a look at our dataset reveals that some columns are completely irrelevant to our target. Said features can be dropped as a starter, such as “who completed the test” and “case number”.
 Also, to understand our data better, we need to know what the first 10 columns correspond to, which are the answers to 10 questions asked to the caregiver of the child to fill in the screening test.
 
-
-Variable in Dataset
+<a name="understand"></a>
+## Understanding Variable in Dataset
 Corresponding Q-chat-10-Toddler Features
 A1
  Does your child look at you when you call his/her name?
@@ -62,13 +52,13 @@ A10
 Does your child stare at nothing with no apparent purpose? 
 
 
-
-Data Wrangling (checking for outliers and duplicates)
+<a name="wrangling"></a>
+## Data Wrangling (checking for outliers and duplicates)
 
 To make sure the remaining columns don’t have outliers such as misspelling, we apply .unique() method on different categorical columns such as ”sex”, ”jaundice”, “Family_mem_with_ASD” ..etc. Fortunately, there’s no outliers in our dataset.
 We also check for duplicates using .duplicated().sum() and we luckily find none.
 
-Data Exploration and visualization 
+## Data Exploration and visualization 
 Now, we start exploring our features and measuring their relevance to our label. This is mainly to understand our data better and to make sure there is no bias in the dataset. We want to make sure that our data is representative of the population. This can be done using some visualizations.
 
 
@@ -96,27 +86,29 @@ Which results in the following observations:
 Most common age in our dataset is 36 months
  while the rarest is 17 monthsNote: dataset was collected with kids as the target audience. With the goal of predicting ASD in children.
 
-
+## Dropping Irrelevent Features
 Finally, we use a heatmap to plot the correlation between different columns in our dataset. 
 Our main focus is to identify the features with insignificant correlation with our label, hence we can drop them to get rid of irrelevant info. Or features with way too high correlation that might be leaking info to the model.
 We discover that:
 
  We notice a very high correlation with the “Qchat-10-score” column which is a redundant feature (it sums the first 10 features) so we drop it to avoid overfitting. 
 
-Label encoding 
+## More preprocessing (Label encoding & Dummy encoding)
+
+### Label encoding 
 We transfer our categorical features with string data into numbers. For example:
 Male:1, female:0
 yes:1, no:0
 
-Dummy encoding 
+### Dummy encoding 
 In order to represent ethnicity features in a proper manner, label encoding won’t give us the best results so we resort to dummy encoding which is dividing ethnicity columns to a bunch of columns in a way to turn it into a binary feature. Like if we have for example 3 ethnicities white , black and asian we will have 3 columns(Features) where if the record is black will have 1 in the black column and 0 in white and asian.But one can see if we know that the record is not black and is not asian then it must be white.If we include all 3 columns we have fallen into dummy variable trap .So to avoid it we dropped the native american ethnicity from the new columns that were made from ethnicity column.
 
 
-Splitting the data
+## Splitting the data
 We split our data into training and testing sets with a test size of 0.3
 
 
-Fitting our models
+## Fitting our models
 We try fitting our training set to multiple models such as:
 Logistic regression 
 SVM
@@ -124,7 +116,7 @@ Decision tree
 Naive Bayes
 KNN
 
-Testing and printing the results 
+## Testing and printing the results 
 To measure the performance of our model, we don’t only check the accuracy, but it’s also crucial to check the confusion matrix. Especially the number of false negatives as we are tackling a medical problem.
 
 We can clearly see that logistic regression has  the best result . It has 1 false negative and only 1 false positive. The score is also pretty good. (0.99)
@@ -132,7 +124,7 @@ While other models didn’t perform as well,like SVM
 Clearly, the decision tree is not suitable for this problem since the dataset has many features and we know this can contribute to overfitting which decision tree is prone to. This is the case here as the score dropped from 1 for training to 0.908 for testing. It also has 10 false negatives which is alarming for a medical problem.
 For the knn the k selected was 10 and the accuracy is considered good , with false negative value of 7 , but still lags behind logistic regression  and so did naive bayes .
 
-The results 
+## The results 
 
 
 
